@@ -10,6 +10,9 @@ python-dotenv = "*"
 pydantic-settings = "*"
 alembic = "*"
 psycopg2-binary = "*"
+pydantic = {extras = ["email"], version = "*"}
+python-jose = "*"
+bcrypt = "*"
 
 [dev-packages]
 
