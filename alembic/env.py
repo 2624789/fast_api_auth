@@ -6,7 +6,7 @@ from sqlalchemy import pool
 from alembic import context
 
 from app.config import settings
-from app.auth.db.models import UserModel
+from app.auth.db import UserModel
 from app.database.config import Base
 from app.database.config import engine
 
