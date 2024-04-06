@@ -1,9 +1,11 @@
+from typing import List
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import PostgresDsn
+from pydantic import Field, PostgresDsn
 
 
 class Settings(BaseSettings):
     access_token_expire_minutes: int
+    cors_origins: List[str] = Field(default_factory=list)
     database_user: str
     database_password: str
     database_name: str
