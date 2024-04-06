@@ -7,7 +7,8 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 
 from app.auth.db import UserModel
-from app.auth.schemas import UserRegisterSchema, UserWithTokenSchema
+from app.auth.dependencies import CurrentUserDep
+from app.auth.schemas import UserRegisterSchema, UserSchema, UserWithTokenSchema
 from app.auth.security import create_access_token
 from app.config import settings
 from app.database.dependencies import get_db
@@ -18,6 +19,11 @@ router = APIRouter(
     prefix="/auth",
     tags=["Authentication"],
 )
+
+
+@router.get("/current-user", response_model=UserSchema)
+async def get_current_user(current_user: CurrentUserDep) -> UserSchema:
+    return current_user
 
 
 @router.post("/login", response_model=UserWithTokenSchema)
